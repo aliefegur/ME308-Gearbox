@@ -92,7 +92,7 @@ def calculate_possible_bevel_properties():
             pinion = BevelGear(module, N, 20, gamma, face_width)
             gear = BevelGear(module, N / e, 20, np.pi / 2 - gamma, face_width)
             
-            pinion.apply_tangential_force((60000*POWER)/(np.pi*N*module*RPM))
+            pinion.apply_tangential_force((60000*POWER)/(np.pi*N*module*RPM*E1))
             gear.apply_tangential_force(pinion.applied_force().x)
 
             pinion.set_rpm(RPM)
@@ -126,8 +126,7 @@ helicals = df1[(df1['stress_p'] < (S_YT / N_D)) & (df1['d_p'] > 50) & (df1['d_g'
 bevels = df2[(df2['stress_p'] < (S_YT / N_D)) & (df2['d_p'] > 50) & (df2['d_g'] < 400) & (df2['N_p'] % 2 == 0) & (df2['N_g'] % 2 == 0)]
 
 print("\nPossible Helical Gear Couples:")
-#print(helicals[['m', 'N_p', 'N_g', 'd_p', 'd_g', 'F']])
 print(helicals)
+
 print("\n\nPossible Bevel Gear Couples:")
-#print(bevels[['m', 'N_p', 'N_g', 'd_p', 'd_g', 'F']])
 print(bevels)
