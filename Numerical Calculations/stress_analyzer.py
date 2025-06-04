@@ -29,6 +29,7 @@ def lewis_factor(N: int) -> float:
 def get_stress(gear: Gear) -> float:
     # Calculate dynamic effect coefficient
     V = gear.d * 1e-3 * np.pi * gear.rpm / 60    # Pitch-line velocity (m/s)
+
     Kv = (6.1 + V) / 6.1    # For cut or milled profile
-    stress = (Kv * gear.W[0]) / (gear.F * gear.m * lewis_factor(gear.N) / 1000)
+    stress = (Kv * gear.W.x) / (gear.F * gear.m * lewis_factor(gear.N) / 1000)
     return stress
